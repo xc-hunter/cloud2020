@@ -1,0 +1,23 @@
+server:
+  port: 9527
+spring:
+  application:
+    name: cloud-gateway  #在注册中心中的名字，可标识一个服务集群，项目名称相同，为同一个微服务的节点
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: payment
+          uri: lb://cloud-payment-service
+          predicates:
+            - Path=/payment/get/**
+        - id: payment_2
+          uri: lb://cloud-payment-service
+          predicates:
+            - Path=/payment/lb/**
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/

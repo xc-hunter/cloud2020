@@ -1,0 +1,27 @@
+server:
+  port: 3366
+spring:
+  application:
+    name: config-client
+  cloud:
+    #客户端配置
+    config:
+      label: master #分支名称
+      name: config #配置文件名称
+      profile: dev #读取后缀名称，
+      uri: http://localhost:3344 #配置中心地址
+      #上面4个配置的结果是会去访问http://localhost:3344/master/config-dev.yml
+  rabbitmq:
+    host: 192.168.3.7
+    port: 5672
+    username: xiechao
+    password: xiechao
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

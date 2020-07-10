@@ -1,0 +1,22 @@
+server:
+  port: 80
+eureka:
+  client:
+    register-with-eureka: true  #表示注册到注册中心
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
+spring:
+  application:
+    name: cloud-order-service
+feign:
+  client:
+    config:
+      #default代表所有服务
+      default:
+        #feign客户端建立连接超时时间
+        connectTimeout: 10000
+        #feign客户端建立连接后读取资源超时时间
+        readTimeout: 4000
+  hystrix:
+    enabled: true #在feign中开启Hystrix
